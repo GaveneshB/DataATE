@@ -1,0 +1,410 @@
+/* CSS Variables */
+:root {
+    --bg-color: #D3DCE3;
+    --header-bg: #EDEDED;
+    --text-primary: #000000;
+    --text-white: #FFFFFF;
+    --btn-primary: #14213D;
+    --accent-blue: #0B1C3F;
+    --success-green: #14AE5C;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+}
+
+/* Container */
+.complete-container {
+    width: 100%;
+    max-width: 428px;
+    min-height: 926px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.complete-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 27px 13px;
+    background: var(--header-bg);
+}
+
+.header-logo img {
+    height: 26px;
+    width: auto;
+}
+
+/* Progress Section */
+.progress-section {
+    padding: 16px 38px;
+    background: var(--header-bg);
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.progress-step {
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #959595;
+}
+
+.progress-step.completed .step-icon {
+    color: var(--accent-blue);
+}
+
+.progress-line {
+    width: 61px;
+    height: 0;
+    border-top: 1.5px dashed #959595;
+}
+
+.progress-line.completed {
+    border-color: var(--accent-blue);
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: #959595;
+}
+
+.progress-labels span.completed {
+    color: var(--accent-blue);
+    font-weight: 500;
+}
+
+/* Success Content */
+.success-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 60px 22px 40px;
+}
+
+/* Success Icon */
+.success-icon {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 40px;
+    animation: scaleIn 0.6s ease-out;
+}
+
+.success-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Checkmark animation */
+.success-icon svg circle {
+    stroke-dasharray: 565;
+    stroke-dashoffset: 565;
+    animation: drawCircle 1s ease-out 0.3s forwards;
+}
+
+.success-icon svg path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawCheck 0.5s ease-out 1s forwards;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Success Message */
+.success-message {
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.success-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.success-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.success-desc {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 2.71;
+    color: var(--text-primary);
+    text-align: center;
+    max-width: 383px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Home Button */
+.home-btn {
+    display: block;
+    width: 159px;
+    height: 45px;
+    margin: 0 auto 40px;
+    background: var(--btn-primary);
+    border: none;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 45px;
+    text-align: center;
+    color: var(--text-white);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.home-btn:hover {
+    background: #1a2a4f;
+}
+
+.home-btn:active {
+    transform: scale(0.98);
+}
+
+/* Confetti animation (optional enhancement) */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--success-green);
+    opacity: 0;
+    animation: confettiFall 3s ease-out forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        opacity: 1;
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .success-icon {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .success-title,
+    .success-subtitle {
+        font-size: 18px;
+    }
+    
+    .success-desc {
+        font-size: 13px;
+        line-height: 2.2;
+    }
+    
+    .home-btn {
+        font-size: 18px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .complete-container {
+        max-width: 600px;
+    }
+    
+    .success-icon {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .success-title,
+    .success-subtitle {
+        font-size: 24px;
+    }
+}
+
+/* Laptop Layout */
+@media (min-width: 1024px) {
+    body {
+        background: linear-gradient(135deg, #D3DCE3 0%, #B8C6D1 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+    
+    .complete-container {
+        max-width: 800px;
+        min-height: auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        padding-bottom: 50px;
+    }
+    
+    .complete-header {
+        padding: 35px 20px;
+        background: rgba(237, 237, 237, 0.5);
+        border-radius: 32px 32px 0 0;
+    }
+    
+    .header-logo img {
+        height: 40px;
+    }
+    
+    .progress-section {
+        padding: 24px 60px;
+        background: rgba(237, 237, 237, 0.5);
+    }
+    
+    .progress-step {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .step-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .progress-line {
+        width: 100px;
+    }
+    
+    .progress-labels {
+        padding: 12px 0;
+        font-size: 14px;
+    }
+    
+    .success-content {
+        padding: 80px 40px 60px;
+    }
+    
+    .success-icon {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 50px;
+    }
+    
+    .success-title,
+    .success-subtitle {
+        font-size: 28px;
+    }
+    
+    .success-subtitle {
+        margin-bottom: 30px;
+    }
+    
+    .success-desc {
+        font-size: 16px;
+        line-height: 2;
+        max-width: 500px;
+    }
+    
+    .home-btn {
+        width: 200px;
+        height: 56px;
+        font-size: 22px;
+        line-height: 56px;
+        border-radius: 28px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Large Laptop / Desktop */
+@media (min-width: 1440px) {
+    .complete-container {
+        max-width: 900px;
+    }
+    
+    .success-icon {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .success-title,
+    .success-subtitle {
+        font-size: 32px;
+    }
+    
+    .success-desc {
+        font-size: 18px;
+        max-width: 600px;
+    }
+}
+

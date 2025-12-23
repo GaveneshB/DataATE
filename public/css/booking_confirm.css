@@ -1,0 +1,733 @@
+/* CSS Variables */
+:root {
+    --bg-color: #FFFFFF;
+    --card-bg-booking: rgba(238, 242, 255, 0.85);
+    --card-bg: #E6E9F8;
+    --text-primary: #000000;
+    --text-header: #181C2E;
+    --text-muted: rgba(0, 0, 0, 0.42);
+    --accent-blue: #05B0ED;
+    --accent-green: #06D23F;
+    --btn-primary: #14213D;
+    --divider: rgba(0, 0, 0, 0.35);
+    --border-light: rgba(0, 0, 0, 0.42);
+    --radio-color: #52698D;
+    --shadow: 0px 0px 0px 0px rgba(0, 0, 96, 0.1), 
+              0px 0px 1px 0px rgba(0, 0, 96, 0.1), 
+              -1px 1px 1px 0px rgba(0, 0, 96, 0.09), 
+              -2px 2px 2px 0px rgba(0, 0, 96, 0.05), 
+              -3px 4px 2px 0px rgba(0, 0, 96, 0.01), 
+              -4px 6px 2px 0px rgba(0, 0, 96, 0);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Shippori Antique', serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+}
+
+/* Container */
+.confirm-container {
+    width: 100%;
+    max-width: 428px;
+    min-height: 926px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+/* Header */
+.confirm-header {
+    display: flex;
+    align-items: center;
+    padding: 27px 13px;
+    gap: 6px;
+}
+
+.back-btn {
+    width: 23px;
+    height: 23px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-3px);
+}
+
+.header-title {
+    font-family: 'Sen', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.29;
+    color: var(--text-header);
+}
+
+/* Car Section */
+.car-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.car-name {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.375;
+    color: var(--text-primary);
+}
+
+.car-image {
+    width: 236px;
+    height: 158px;
+    overflow: hidden;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Details Cards */
+.details-card {
+    margin: 0 8px 16px 11px;
+    padding: 20px 16px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.booking-details {
+    background: var(--card-bg-booking);
+}
+
+.price-details,
+.promo-section,
+.payment-section {
+    background: var(--card-bg);
+}
+
+.card-title {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.375;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+/* Booking Details */
+.detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.detail-icon {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.detail-label {
+    font-family: 'Sen', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 2.2;
+    color: var(--text-header);
+}
+
+.detail-value {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.69;
+    color: var(--text-primary);
+}
+
+/* Price Details */
+.price-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.price-label {
+    font-family: 'Sen', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 2.2;
+    color: var(--text-header);
+    min-width: 80px;
+}
+
+.price-value {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.69;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.price-amount {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.69;
+    color: var(--text-primary);
+    text-align: right;
+    min-width: 80px;
+}
+
+.addons-row {
+    position: relative;
+}
+
+.addon-indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.price-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--divider);
+    margin: 12px 0;
+}
+
+.total-row .price-label,
+.total-row .price-amount {
+    font-weight: 600;
+}
+
+.price-amount.total {
+    font-size: 14px;
+}
+
+.edit-btn {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.57;
+    color: var(--accent-blue);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.edit-btn:hover {
+    opacity: 0.7;
+}
+
+/* Voucher Section */
+.voucher-section {
+    background: var(--card-bg);
+    padding: 16px;
+}
+
+.voucher-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.voucher-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.voucher-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.voucher-label {
+    font-family: 'Sen', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.voucher-status {
+    font-family: 'Sen', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.voucher-status.applied {
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+.voucher-select-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.voucher-select-btn:hover {
+    transform: translateX(3px);
+}
+
+/* Applied Voucher */
+.applied-voucher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(6, 210, 63, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(6, 210, 63, 0.3);
+}
+
+.applied-voucher-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.applied-label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--accent-green);
+}
+
+.applied-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.remove-voucher-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.remove-voucher-btn:hover {
+    opacity: 0.7;
+}
+
+/* Payment Section */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.payment-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--radio-color);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.payment-option input[type="radio"]:checked + .radio-custom {
+    border-color: var(--radio-color);
+}
+
+.payment-option input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: var(--radio-color);
+    border-radius: 50%;
+}
+
+.payment-name {
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.69;
+    color: var(--text-primary);
+}
+
+/* Pay Now Button */
+.pay-now-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 18px);
+    max-width: 409px;
+    height: 48px;
+    background: var(--btn-primary);
+    border: none;
+    border-radius: 15px;
+    font-family: 'Shippori Antique', serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.375;
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.pay-now-btn:hover {
+    background: #1a2a4f;
+}
+
+.pay-now-btn:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .car-section {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .car-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 236 / 158;
+    }
+
+    .price-row {
+        flex-wrap: wrap;
+    }
+
+    .price-value {
+        flex: none;
+        width: calc(100% - 160px);
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .confirm-container {
+        max-width: 600px;
+    }
+    
+    .header-title {
+        font-size: 20px;
+    }
+    
+    .car-image {
+        width: 300px;
+        height: 200px;
+    }
+    
+    .details-card {
+        padding: 24px 20px;
+    }
+}
+
+/* Laptop Layout */
+@media (min-width: 1024px) {
+    body {
+        background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
+        padding: 40px;
+    }
+    
+    .confirm-container {
+        max-width: 900px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+    
+    .confirm-header {
+        padding: 30px 40px;
+        justify-content: flex-start;
+        gap: 20px;
+        background: transparent;
+    }
+    
+    .back-btn {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-title {
+        font-size: 28px;
+        font-weight: 600;
+    }
+    
+    .car-section {
+        padding: 30px 40px;
+        align-items: center;
+    }
+    
+    .car-name {
+        font-size: 24px;
+    }
+    
+    .car-image {
+        width: 400px;
+        height: 268px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .details-card {
+        margin: 0 40px 24px;
+        padding: 30px 35px;
+        border-radius: 24px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+    
+    .detail-row {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .detail-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .detail-label {
+        font-size: 12px;
+    }
+    
+    .detail-value {
+        font-size: 16px;
+    }
+    
+    .price-label {
+        font-size: 13px;
+        min-width: 120px;
+    }
+    
+    .price-value,
+    .price-amount {
+        font-size: 16px;
+    }
+    
+    .price-amount {
+        min-width: 120px;
+    }
+    
+    .price-divider {
+        margin: 20px 0;
+    }
+    
+    .price-amount.total {
+        font-size: 18px;
+    }
+    
+    .edit-btn {
+        font-size: 16px;
+    }
+    
+    .voucher-row {
+        gap: 16px;
+    }
+    
+    .voucher-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .voucher-label {
+        font-size: 16px;
+    }
+    
+    .voucher-status {
+        font-size: 14px;
+    }
+    
+    .voucher-select-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .applied-voucher {
+        padding: 16px 20px;
+    }
+    
+    .applied-label,
+    .applied-name {
+        font-size: 15px;
+    }
+    
+    .payment-options {
+        gap: 16px;
+    }
+    
+    .payment-option {
+        padding: 12px 0;
+        gap: 16px;
+    }
+    
+    .radio-custom {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .payment-option input[type="radio"]:checked + .radio-custom::after {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .payment-name {
+        font-size: 16px;
+    }
+    
+    .pay-now-btn {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        display: block;
+        width: 250px;
+        height: 56px;
+        margin: 30px auto 0;
+        font-size: 18px;
+        border-radius: 28px;
+    }
+    
+    .pay-now-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Large Laptop / Desktop */
+@media (min-width: 1440px) {
+    .confirm-container {
+        max-width: 1000px;
+    }
+    
+    .car-section {
+        padding: 40px 60px;
+    }
+    
+    .car-name {
+        font-size: 28px;
+    }
+    
+    .car-image {
+        width: 450px;
+        height: 300px;
+    }
+    
+    .details-card {
+        margin: 0 60px 30px;
+        padding: 35px 45px;
+    }
+    
+    .header-title {
+        font-size: 32px;
+    }
+}
+
+/* Animations */
+.details-card {
+    animation: slideUp 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+.booking-details { animation-delay: 0.1s; }
+.price-details { animation-delay: 0.2s; }
+.promo-section { animation-delay: 0.3s; }
+.payment-section { animation-delay: 0.4s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success/Error States */
+.promo-success {
+    border-color: var(--accent-green) !important;
+}
+
+.promo-error {
+    border-color: #E75B5B !important;
+}
+
+.promo-message {
+    font-family: 'Sen', sans-serif;
+    font-size: 11px;
+    margin-top: 6px;
+    padding-left: 4px;
+}
+
+.promo-message.success {
+    color: var(--accent-green);
+}
+
+.promo-message.error {
+    color: #E75B5B;
+}
+

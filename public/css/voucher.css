@@ -1,0 +1,497 @@
+/* CSS Variables */
+:root {
+    --bg-color: #FFFFFF;
+    --header-bg: #E5E8F8;
+    --card-bg: #FFFFFF;
+    --voucher-left-bg: #E6E9F8;
+    --text-primary: #000000;
+    --text-secondary: #565656;
+    --text-muted: #4D4D4D;
+    --accent-blue: #52698D;
+    --accent-blue-dark: #0B1C3F;
+    --disabled-color: #CCD3DF;
+    --divider: #C9C9C9;
+    --border-light: #E5E5E5;
+    --shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+}
+
+/* Container */
+.voucher-container {
+    width: 100%;
+    max-width: 428px;
+    min-height: 926px;
+    margin: 0 auto;
+}
+
+/* Header */
+.voucher-header {
+    background: var(--header-bg);
+    padding: 20px 24px 80px;
+    border-radius: 0 0 16px 16px;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    top: 27px;
+    left: 13px;
+    width: 23px;
+    height: 23px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-3px);
+}
+
+.header-title {
+    font-family: 'ABeeZee', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.18;
+    color: #0A0A0A;
+    text-align: center;
+    padding-top: 10px;
+}
+
+/* Coupon Input Section */
+.coupon-input-section {
+    margin-top: -50px;
+    padding: 0 24px;
+}
+
+.coupon-input-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: var(--shadow);
+}
+
+.coupon-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    outline: none;
+}
+
+.coupon-input::placeholder {
+    color: var(--text-muted);
+}
+
+.apply-btn {
+    background: transparent;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #929292;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.apply-btn:hover {
+    color: var(--accent-blue-dark);
+}
+
+.apply-btn.active {
+    color: var(--accent-blue);
+}
+
+/* Offers Section */
+.offers-section {
+    padding: 24px 8px;
+}
+
+.section-title {
+    font-family: 'ABeeZee', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.18;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding-left: 8px;
+}
+
+/* Vouchers List */
+.vouchers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Voucher Card */
+.voucher-card {
+    display: flex;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    min-height: 148px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.voucher-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.voucher-card.selected {
+    border: 2px solid var(--accent-blue);
+}
+
+/* Voucher Left Section */
+.voucher-left {
+    width: 68px;
+    background: var(--voucher-left-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+}
+
+/* Dotted edge effect */
+.voucher-left::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 70px;
+    background-image: radial-gradient(circle, var(--card-bg) 5px, transparent 5px);
+    background-size: 10px 18px;
+    background-repeat: repeat-y;
+}
+
+.voucher-value-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--accent-blue-dark);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Voucher Right Section */
+.voucher-right {
+    flex: 1;
+    display: flex;
+    padding: 20px 16px;
+    gap: 12px;
+}
+
+.voucher-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.voucher-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.voucher-divider {
+    width: 100%;
+    height: 1px;
+    border-top: 1px dashed var(--divider);
+    margin-bottom: 12px;
+}
+
+.voucher-desc {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* Redeem Button */
+.redeem-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.redeem-btn.active {
+    color: var(--accent-blue);
+}
+
+.redeem-btn.active:hover {
+    background: rgba(82, 105, 141, 0.1);
+}
+
+.redeem-btn.disabled {
+    color: var(--disabled-color);
+    cursor: not-allowed;
+}
+
+.redeem-btn.selected {
+    color: #06D23F;
+    background: rgba(6, 210, 63, 0.1);
+}
+
+/* Animations */
+.voucher-card {
+    animation: fadeInUp 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+.voucher-card:nth-child(1) { animation-delay: 0.1s; }
+.voucher-card:nth-child(2) { animation-delay: 0.2s; }
+.voucher-card:nth-child(3) { animation-delay: 0.3s; }
+.voucher-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    animation: slideDown 0.3s ease-out;
+}
+
+.notification.success {
+    background: #06D23F;
+    color: white;
+}
+
+.notification.error {
+    background: #E75B5B;
+    color: white;
+}
+
+.notification.info {
+    background: var(--accent-blue-dark);
+    color: white;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .voucher-value-text {
+        font-size: 16px;
+    }
+    
+    .voucher-title {
+        font-size: 16px;
+    }
+    
+    .voucher-desc {
+        font-size: 12px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .voucher-container {
+        max-width: 600px;
+    }
+    
+    .offers-section {
+        padding: 30px 20px;
+    }
+}
+
+/* Laptop Layout */
+@media (min-width: 1024px) {
+    body {
+        background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
+        padding: 40px;
+    }
+    
+    .voucher-container {
+        max-width: 800px;
+        min-height: auto;
+        background: #FFFFFF;
+        border-radius: 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    
+    .voucher-header {
+        padding: 30px 40px 100px;
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .back-btn {
+        top: 35px;
+        left: 40px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-title {
+        font-size: 20px;
+        padding-top: 15px;
+    }
+    
+    .coupon-input-section {
+        margin-top: -60px;
+        padding: 0 40px;
+    }
+    
+    .coupon-input-container {
+        padding: 16px 24px;
+        border-radius: 16px;
+    }
+    
+    .coupon-input {
+        font-size: 20px;
+    }
+    
+    .apply-btn {
+        font-size: 20px;
+    }
+    
+    .offers-section {
+        padding: 40px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+    
+    .vouchers-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .voucher-card {
+        min-height: 160px;
+    }
+    
+    .voucher-left {
+        width: 80px;
+    }
+    
+    .voucher-value-text {
+        font-size: 22px;
+    }
+    
+    .voucher-right {
+        padding: 24px 20px;
+    }
+    
+    .voucher-title {
+        font-size: 20px;
+    }
+    
+    .voucher-desc {
+        font-size: 15px;
+    }
+    
+    .redeem-btn {
+        font-size: 17px;
+        padding: 6px 12px;
+    }
+}
+
+/* Large Laptop / Desktop */
+@media (min-width: 1440px) {
+    .voucher-container {
+        max-width: 900px;
+    }
+    
+    .voucher-header {
+        padding: 35px 50px 110px;
+    }
+    
+    .offers-section {
+        padding: 50px 60px;
+    }
+    
+    .voucher-card {
+        min-height: 180px;
+    }
+    
+    .voucher-left {
+        width: 90px;
+    }
+    
+    .voucher-value-text {
+        font-size: 24px;
+    }
+    
+    .voucher-title {
+        font-size: 22px;
+    }
+}
+

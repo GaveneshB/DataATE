@@ -1,0 +1,568 @@
+/* CSS Variables */
+:root {
+    --bg-color: #D3DCE3;
+    --card-bg: #FFFFFF;
+    --text-primary: #000000;
+    --text-secondary: rgba(0, 0, 0, 0.55);
+    --text-muted: rgba(0, 0, 0, 0.5);
+    --btn-cancel: #D52F2F;
+    --accent-blue: #0B1C3F;
+    --success-green: #14AE5C;
+    --border-color: #000000;
+    --input-border: #D9D9D9;
+    --shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+}
+
+/* Container */
+.cancel-container {
+    width: 100%;
+    max-width: 428px;
+    min-height: 1107px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+/* Header */
+.cancel-header {
+    background: var(--bg-color);
+    padding-bottom: 16px;
+}
+
+/* Logo */
+.header-logo {
+    padding: 12px 22px;
+}
+
+.header-logo img {
+    height: 26px;
+    width: auto;
+}
+
+/* Navigation */
+.header-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.21;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 4px 8px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-blue);
+}
+
+.nav-link.active {
+    color: var(--text-muted);
+}
+
+/* Page Title Section */
+.page-title-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 54px;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-3px);
+}
+
+.page-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* Form */
+.cancel-form {
+    padding: 16px 27px;
+}
+
+/* Booking Details Card */
+.booking-details-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.card-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.card-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.027em;
+    color: var(--text-primary);
+}
+
+/* Booking Info Grid */
+.booking-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.027em;
+}
+
+.info-label {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 400;
+    text-align: right;
+}
+
+/* Form Section */
+.form-section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-family: 'Yeseva One', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+/* Select Wrapper */
+.select-wrapper {
+    position: relative;
+    width: 170px;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    color: #1E1E1E;
+    background: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 12px;
+    line-height: 1.83;
+    color: var(--text-primary);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: border-color 0.2s ease;
+}
+
+.input-group input::placeholder {
+    color: var(--text-secondary);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+/* Refund Info */
+.refund-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
+    background: rgba(20, 174, 92, 0.1);
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.refund-info svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.refund-info span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.refund-info strong {
+    color: var(--success-green);
+}
+
+/* Cancel Button */
+.cancel-btn {
+    display: block;
+    width: 152px;
+    height: 44px;
+    margin: 0 auto;
+    background: var(--btn-cancel);
+    border: none;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--card-bg);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.cancel-btn:hover {
+    background: #b52828;
+}
+
+.cancel-btn:active {
+    transform: scale(0.98);
+}
+
+.cancel-btn:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    animation: slideDown 0.3s ease-out;
+}
+
+.notification.success {
+    background: var(--success-green);
+    color: white;
+}
+
+.notification.error {
+    background: var(--btn-cancel);
+    color: white;
+}
+
+.notification.info {
+    background: var(--accent-blue);
+    color: white;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Animations */
+.booking-details-card {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.form-section {
+    animation: fadeInUp 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+.form-section:nth-of-type(1) { animation-delay: 0.1s; }
+.form-section:nth-of-type(2) { animation-delay: 0.2s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .page-title {
+        font-size: 20px;
+    }
+    
+    .back-btn {
+        left: 20px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .info-value {
+        text-align: left;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .cancel-container {
+        max-width: 600px;
+    }
+    
+    .booking-details-card {
+        padding: 28px 32px;
+    }
+}
+
+/* Laptop Layout */
+@media (min-width: 1024px) {
+    body {
+        background: linear-gradient(135deg, #D3DCE3 0%, #B8C6D1 100%);
+        padding: 40px;
+    }
+    
+    .cancel-container {
+        max-width: 900px;
+        min-height: auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        padding-bottom: 50px;
+    }
+    
+    .cancel-header {
+        background: transparent;
+        padding-bottom: 24px;
+    }
+    
+    .header-logo {
+        padding: 30px 40px;
+    }
+    
+    .header-logo img {
+        height: 35px;
+    }
+    
+    .header-nav {
+        gap: 40px;
+        padding: 12px 40px;
+    }
+    
+    .nav-link {
+        font-size: 15px;
+        padding: 8px 16px;
+    }
+    
+    .page-title-section {
+        padding: 30px 40px;
+    }
+    
+    .back-btn {
+        left: 80px;
+        width: 50px;
+        height: 50px;
+        background: rgba(211, 220, 227, 0.5);
+        border-radius: 50%;
+    }
+    
+    .page-title {
+        font-size: 32px;
+    }
+    
+    .cancel-form {
+        padding: 24px 60px 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .booking-details-card {
+        grid-column: span 2;
+        padding: 35px 45px;
+        border-radius: 24px;
+    }
+    
+    .card-header {
+        margin-bottom: 28px;
+    }
+    
+    .card-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+    }
+    
+    .booking-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 40px;
+    }
+    
+    .info-row {
+        font-size: 16px;
+    }
+    
+    .form-section {
+        margin-bottom: 0;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+    
+    .select-wrapper {
+        width: 220px;
+    }
+    
+    .select-wrapper select {
+        padding: 14px 44px 14px 20px;
+        font-size: 17px;
+    }
+    
+    .input-group input {
+        padding: 14px 20px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+    
+    .refund-info {
+        grid-column: span 2;
+        padding: 20px 24px;
+        border-radius: 16px;
+    }
+    
+    .refund-info span {
+        font-size: 16px;
+    }
+    
+    .cancel-btn {
+        grid-column: span 2;
+        width: 200px;
+        height: 54px;
+        font-size: 20px;
+        border-radius: 27px;
+        justify-self: center;
+    }
+}
+
+/* Large Laptop / Desktop */
+@media (min-width: 1440px) {
+    .cancel-container {
+        max-width: 1000px;
+    }
+    
+    .cancel-form {
+        padding: 30px 80px 50px;
+    }
+    
+    .booking-details-card {
+        padding: 40px 55px;
+    }
+    
+    .page-title {
+        font-size: 36px;
+    }
+}
+

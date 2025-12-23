@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Booking Form - DataATE</title>
+    <link rel="stylesheet" href="{{ asset('css/booking_calendar.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Geist:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="booking-container">
+        <!-- Back Arrow -->
+        <button class="back-btn" onclick="goBack()">
+            <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 1L1 7.5L7.5 14" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M1 7.5H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+
+        <!-- Logo -->
+        <img src="{{ asset('image/dataate-logo.png') }}" alt="DataATE" class="header-logo"
+            onerror="this.style.display='none'">
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Header -->
+            <h1 class="form-title">Car Booking Form</h1>
+
+            <!-- Car Selection -->
+            <div class="form-group">
+                <label>Car</label>
+                <div class="input-field">
+                    <span class="field-value" id="selectedCar">Perodua Bezza 2023</span>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="form-group">
+                <label>Choose your rental date</label>
+                <div class="calendar-container">
+                    <!-- Calendar Header -->
+                    <div class="calendar-header">
+                        <button class="nav-btn prev-month" onclick="changeMonth(-1)">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M12.5 15L7.5 10L12.5 5" stroke="#1E1E1E" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <div class="month-year-select">
+                            <div class="select-field">
+                                <select id="monthSelect" onchange="updateCalendar()">
+                                    <option value="0">Jan</option>
+                                    <option value="1">Feb</option>
+                                    <option value="2">Mar</option>
+                                    <option value="3">Apr</option>
+                                    <option value="4">May</option>
+                                    <option value="5">Jun</option>
+                                    <option value="6">Jul</option>
+                                    <option value="7">Aug</option>
+                                    <option value="8">Sep</option>
+                                    <option value="9">Oct</option>
+                                    <option value="10">Nov</option>
+                                    <option value="11">Dec</option>
+                                </select>
+                            </div>
+                            <div class="select-field">
+                                <select id="yearSelect" onchange="updateCalendar()">
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="nav-btn next-month" onclick="changeMonth(1)">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Calendar Days Header -->
+                    <div class="calendar-weekdays">
+                        <span>Su</span>
+                        <span>Mo</span>
+                        <span>Tu</span>
+                        <span>We</span>
+                        <span>Th</span>
+                        <span>Fr</span>
+                        <span>Sa</span>
+                    </div>
+
+                    <!-- Calendar Days Grid -->
+                    <div class="calendar-days" id="calendarDays">
+                        <!-- Days will be generated by JavaScript -->
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <span class="legend-color whole-day"></span>
+                            <span class="legend-text">Whole-day booked</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color half-day"></span>
+                            <span class="legend-text">Half-day booked</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color few-hours"></span>
+                            <span class="legend-text">Few-hours booked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mapModal" class="time-picker-modal">
+                <div class="time-picker-overlay" onclick="closeMapPicker()"></div>
+                <div class="time-picker-container" style="width: 90%; max-width: 500px; padding: 0;">
+                    <div class="time-picker-header">
+                        <span class="time-picker-title">Left-click to choose location</span>
+                    </div>
+                    <div id="mapCanvas" style="height: 400px; width: 100%;"></div>
+                    <div class="time-picker-actions" style="background: white; padding: 10px;">
+                        <button class="time-picker-btn cancel" onclick="closeMapPicker()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Rental Duration -->
+            <div class="form-group">
+                <label>Rental duration</label>
+                <div class="input-field">
+                    <input type="text" id="rentalDuration" placeholder="Select dates on calendar" readonly>
+                </div>
+                <div class="duration-hours" id="durationHours"></div>
+            </div>
+
+            <!-- Pick Up Location -->
+            <div class="form-group">
+                <label>Pick Up Location</label>
+                <div class="input-field map-group">
+                    <input type="text" id="pickupLocation" value="Student Mall" placeholder="Enter pick up location">
+                    <button type="button" class="map-icon-btn" onclick="openMapPicker('pickupLocation')">📍</button>
+                </div>
+                <span class="field-note">A minimum charge of RM10 for location besides Student Mall</span>
+            </div>
+
+            <!-- Return Location -->
+            <div class="form-group">
+                <label>Return Location</label>
+                <div class="input-field map-group">
+                    <input type="text" id="returnLocation" value="Student Mall" placeholder="Enter return location">
+                    <button type="button" class="map-icon-btn" onclick="openMapPicker('returnLocation')">📍</button>
+                </div>
+                <span class="field-note">A minimum charge of RM10 for location besides Student Mall</span>
+            </div>
+
+            <!-- Destination -->
+            <div class="form-group">
+                <label>Destination</label>
+                <div class="input-field map-group">
+                    <input type="text" id="destination"  placeholder="Enter destination">
+                    <button type="button" class="map-icon-btn" onclick="openMapPicker('destination')">📍</button>
+                </div>
+            </div>
+
+            <!-- Confirm Button -->
+            <button class="confirm-btn" onclick="confirmBooking()">Confirm</button>
+        </div>
+
+        <!-- Time Picker Modal -->
+        <div class="time-picker-modal" id="timePickerModal">
+            <div class="time-picker-overlay" onclick="closeTimePicker()"></div>
+            <div class="time-picker-container">
+                <div class="time-picker-header">
+                    <span class="time-picker-title" id="timePickerTitle">Select time</span>
+                </div>
+
+                <div class="time-picker-content">
+                    <!-- Time Input Display -->
+                    <div class="time-input-display">
+                        <div class="time-input-group">
+                            <div class="time-input-box active" id="hourInput" onclick="setTimeMode('hour')">
+                                <span id="selectedHour">07</span>
+                            </div>
+                            <span class="time-separator">:</span>
+                            <div class="time-input-box" id="minuteInput" onclick="setTimeMode('minute')">
+                                <span id="selectedMinute">00</span>
+                            </div>
+                        </div>
+                        <div class="period-selector">
+                            <button class="period-btn active" id="amBtn" onclick="setPeriod('AM')">AM</button>
+                            <button class="period-btn" id="pmBtn" onclick="setPeriod('PM')">PM</button>
+                        </div>
+                    </div>
+
+                    <!-- Clock Face -->
+                    <div class="clock-face" id="clockFace">
+                        <div class="clock-center"></div>
+                        <div class="clock-hand" id="clockHand"></div>
+                        <!-- Hour numbers will be generated by JS -->
+                    </div>
+                </div>
+
+                <div class="time-picker-actions">
+                    <button class="time-picker-btn cancel" onclick="closeTimePicker()">Cancel</button>
+                    <button class="time-picker-btn ok" onclick="confirmTime()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6G0oqiCvdkEPLPmtqJcTHjxsZCPF8aOM&libraries=places"></script>
+    <script src="{{ asset('js/booking_calendar.js') }}"></script>
+    <!-- Map Modal -->
+    <div id="mapModal" class="map-modal">
+        <div class="map-overlay" onclick="closeMapPicker()"></div>
+        <div class="map-container">
+            <div id="mapCanvas" style="height: 400px; width: 100%; border-radius: 10px;"></div>
+            <div style="margin-top:10px; text-align: right;">
+                <button class="time-picker-btn ok" onclick="confirmMapSelection()">Confirm Location</button>
+                <button class="time-picker-btn cancel" onclick="closeMapPicker()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

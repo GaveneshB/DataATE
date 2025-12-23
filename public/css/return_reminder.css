@@ -1,0 +1,544 @@
+/* CSS Variables */
+:root {
+    --bg-color: #D3DCE3;
+    --header-gradient: linear-gradient(180deg, rgba(31, 34, 50, 1) 0%, rgba(63, 69, 101, 1) 27%, rgba(211, 220, 227, 1) 85%);
+    --text-white: #FFFFFF;
+    --text-primary: #000000;
+    --text-secondary: #737373;
+    --accent-blue: rgba(85, 125, 154, 0.57);
+    --btn-primary: #14213D;
+    --timeline-bg: linear-gradient(90deg, rgba(165, 162, 162, 1) 60%, rgba(108, 108, 108, 0.6) 100%);
+    --timeline-fill: #2F2F2F;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Container */
+.reminder-container {
+    width: 100%;
+    max-width: 428px;
+    min-height: 926px;
+    margin: 0 auto;
+    position: relative;
+    overflow-y: auto;
+}
+
+/* Header */
+.reminder-header {
+    background: var(--header-gradient);
+    padding: 40px 32px 50px;
+    text-align: center;
+}
+
+.header-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1.21;
+    color: var(--text-white);
+    margin-bottom: 30px;
+}
+
+/* Timeline Progress */
+.timeline-progress {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-bar {
+    width: 100%;
+    height: 13px;
+    background: var(--timeline-bg);
+    border-radius: 6.5px;
+    overflow: hidden;
+}
+
+.timeline-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--timeline-fill);
+    border-radius: 6.5px;
+    transition: width 1s ease-out;
+}
+
+.timeline-markers {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+}
+
+.timeline-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marker-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--timeline-fill);
+    border-radius: 50%;
+}
+
+.timeline-marker.start .marker-dot {
+    background: var(--text-white);
+}
+
+.timeline-marker.end .marker-dot {
+    background: var(--timeline-fill);
+}
+
+/* Car Info */
+.car-info {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.125;
+    letter-spacing: -0.025em;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Countdown Section */
+.countdown-section {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.countdown-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.21;
+    letter-spacing: -0.014em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+/* Clock Display */
+.clock-display {
+    display: flex;
+    justify-content: center;
+    padding: 10px 17px;
+}
+
+.clock-frame {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.clock-digit {
+    width: 48px;
+    height: 84px;
+    background: linear-gradient(137deg, rgba(0, 0, 0, 1) 18%, rgba(0, 0, 0, 0) 97%), #DFDFDF;
+    border: 1px solid #000;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: #171717;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1), 
+                -0.5px 0px 0.75px 0px rgba(0, 0, 0, 0.1), 
+                -1.5px 0px 1.5px 0px rgba(0, 0, 0, 0.09), 
+                -3.5px 0px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.clock-separator {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: #171717;
+    padding: 0 4px;
+}
+
+/* Return Details Section */
+.return-details {
+    padding: 20px 21px;
+}
+
+.return-datetime {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 16px;
+}
+
+.return-time,
+.return-date {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.21;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+}
+
+/* Location Card */
+.location-card {
+    background: var(--accent-blue);
+    border-radius: 12px;
+    padding: 16px;
+    overflow: hidden;
+}
+
+.location-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.location-icon {
+    width: 23px;
+    height: 18px;
+}
+
+.location-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.21;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+}
+
+/* Map Container */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 111px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #e0e0e0;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #e8e8e8 0%, #c8c8c8 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #557D9A;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Car Image Section */
+.car-image-section {
+    padding: 20px 52px;
+    display: flex;
+    justify-content: center;
+}
+
+.car-image-section img {
+    width: 337px;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+/* Return Button */
+.return-btn {
+    display: block;
+    width: calc(100% - 42px);
+    margin: 20px auto 40px;
+    padding: 16px 32px;
+    background: var(--btn-primary);
+    border: none;
+    border-radius: 15px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-white);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.return-btn:hover {
+    background: #1a2a4f;
+}
+
+.return-btn:active {
+    transform: scale(0.98);
+}
+
+.return-btn.urgent {
+    background: #E75B5B;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(231, 91, 91, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(231, 91, 91, 0);
+    }
+}
+
+/* Overdue State */
+.countdown-text.overdue {
+    color: #E75B5B;
+}
+
+.clock-digit.overdue {
+    background: linear-gradient(137deg, rgba(231, 91, 91, 1) 18%, rgba(231, 91, 91, 0.5) 97%), #DFDFDF;
+    color: #fff;
+}
+
+/* Animations */
+.reminder-header {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.countdown-section {
+    animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.return-details {
+    animation: fadeInUp 0.5s ease-out 0.4s both;
+}
+
+.car-image-section {
+    animation: fadeInUp 0.5s ease-out 0.6s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .header-title {
+        font-size: 26px;
+    }
+    
+    .countdown-text {
+        font-size: 28px;
+    }
+    
+    .clock-digit {
+        width: 40px;
+        height: 70px;
+        font-size: 32px;
+    }
+    
+    .clock-separator {
+        font-size: 32px;
+    }
+    
+    .return-time,
+    .return-date {
+        font-size: 16px;
+    }
+    
+    .location-label {
+        font-size: 16px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .reminder-container {
+        max-width: 600px;
+    }
+    
+    .reminder-header {
+        padding: 50px 50px 60px;
+    }
+}
+
+/* Laptop Layout */
+@media (min-width: 1024px) {
+    body {
+        background: linear-gradient(135deg, #D3DCE3 0%, #B8C6D1 100%);
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .reminder-container {
+        max-width: 900px;
+        min-height: auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 32px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .reminder-header {
+        padding: 50px 60px 70px;
+        border-radius: 32px 32px 0 0;
+    }
+    
+    .header-title {
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .timeline-bar {
+        height: 18px;
+        border-radius: 9px;
+    }
+    
+    .marker-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .car-info {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    
+    .countdown-section {
+        padding: 40px 0;
+    }
+    
+    .countdown-text {
+        font-size: 48px;
+        margin-bottom: 30px;
+    }
+    
+    .clock-frame {
+        gap: 8px;
+    }
+    
+    .clock-digit {
+        width: 70px;
+        height: 120px;
+        font-size: 60px;
+        border-radius: 8px;
+    }
+    
+    .clock-separator {
+        font-size: 60px;
+        padding: 0 8px;
+    }
+    
+    .return-details {
+        padding: 30px 60px;
+    }
+    
+    .return-datetime {
+        gap: 80px;
+        margin-bottom: 24px;
+    }
+    
+    .return-time,
+    .return-date {
+        font-size: 26px;
+    }
+    
+    .location-card {
+        border-radius: 16px;
+        padding: 24px;
+    }
+    
+    .location-label {
+        font-size: 24px;
+    }
+    
+    .map-container {
+        height: 180px;
+        border-radius: 12px;
+    }
+    
+    .car-image-section {
+        padding: 30px 80px;
+    }
+    
+    .car-image-section img {
+        width: 450px;
+        max-height: 400px;
+    }
+    
+    .return-btn {
+        width: 300px;
+        margin: 30px auto 50px;
+        padding: 20px 40px;
+        font-size: 22px;
+        border-radius: 28px;
+    }
+}
+
+/* Large Laptop / Desktop */
+@media (min-width: 1440px) {
+    .reminder-container {
+        max-width: 1000px;
+    }
+    
+    .header-title {
+        font-size: 48px;
+    }
+    
+    .countdown-text {
+        font-size: 56px;
+    }
+    
+    .clock-digit {
+        width: 80px;
+        height: 140px;
+        font-size: 70px;
+    }
+    
+    .clock-separator {
+        font-size: 70px;
+    }
+    
+    .car-image-section img {
+        width: 500px;
+    }
+}
+

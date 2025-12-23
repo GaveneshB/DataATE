@@ -1,0 +1,551 @@
+/* CSS Variables */
+:root {
+    --primary-dark: #0B1C3F;
+    --button-dark: #14213D;
+    --teal: #113C3C;
+    --white: #FFFFFF;
+    --black: #000000;
+    --light-gray: #F4F4F4;
+    --border-gray: #817474;
+    --disabled-bg: #EDEDED;
+    --disabled-border: #D3D3D3;
+    --disabled-text: rgba(136, 136, 136, 0.53);
+    --unavailable-bg: #D9D9D9;
+    --shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('../image/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 60%, rgba(167, 169, 177, 0.8) 0%, rgba(86, 93, 111, 0.95) 100%);
+    z-index: 2;
+}
+
+/* Navigation */
+.navbar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 50px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.nav-links a.active {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-login {
+    padding: 10px 24px;
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: var(--white);
+    color: var(--primary-dark);
+}
+
+.btn-signup {
+    padding: 10px 24px;
+    background: var(--white);
+    border: 2px solid var(--white);
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-signup:hover {
+    background: transparent;
+    color: var(--white);
+}
+
+.btn-logout {
+    padding: 10px 24px;
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: var(--white);
+    color: var(--primary-dark);
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.hero-text .tagline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--white);
+    margin-bottom: 30px;
+}
+
+.explore-btn {
+    background: var(--white);
+    border: none;
+    padding: 14px 32px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: #575D6F;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explore-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Car Section */
+.hero-car-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-car-img {
+    width: 450px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.car-specs {
+    color: var(--white);
+}
+
+.color-label {
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.specs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.spec-item {
+    display: flex;
+    gap: 20px;
+}
+
+.spec-label {
+    font-weight: 600;
+    font-size: 12px;
+    min-width: 80px;
+}
+
+.spec-value {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* Hero Navigation */
+.hero-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-arrow {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav-arrow svg {
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-arrow:hover {
+    border-color: var(--white);
+}
+
+.nav-arrow:hover svg {
+    color: var(--white);
+}
+
+.nav-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background: var(--white);
+}
+
+/* Car Models Section */
+.car-models {
+    padding: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Tilt Warp', cursive;
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--black);
+}
+
+/* Cars Grid - Laptop Layout */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Car Card */
+.car-card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.car-card.unavailable {
+    background: var(--unavailable-bg);
+}
+
+.car-card.unavailable:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+}
+
+.car-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.car-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.car-info {
+    padding: 15px 20px 20px;
+}
+
+.car-name {
+    font-family: 'Suez One', serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.car-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-family: 'Righteous', cursive;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-rent {
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+}
+
+.btn-rent:hover {
+    background: #0d2f2f;
+}
+
+.btn-details {
+    background: var(--light-gray);
+    color: var(--black);
+    border: 1px solid var(--border-gray);
+}
+
+.btn-details:hover {
+    background: #e8e8e8;
+}
+
+.btn-unavailable {
+    flex: 1;
+    background: var(--disabled-bg);
+    color: var(--disabled-text);
+    border: 1px solid var(--disabled-border);
+    cursor: not-allowed;
+}
+
+.btn-unavailable:hover {
+    background: var(--disabled-bg);
+}
+
+/* Responsive Design for Laptop */
+@media (max-width: 1200px) {
+    .cars-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .hero-car-img {
+        width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .cars-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-text h1 {
+        font-size: 36px;
+    }
+    
+    .hero-car-section {
+        margin-top: 30px;
+    }
+    
+    .hero-car-img {
+        width: 300px;
+    }
+    
+    .navbar {
+        padding: 20px 30px;
+    }
+    
+    .nav-links {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .auth-buttons {
+        margin-top: 10px;
+    }
+    
+    .hero-content {
+        padding: 30px 20px;
+    }
+    
+    .hero-text h1 {
+        font-size: 28px;
+    }
+    
+    .cars-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .car-models {
+        padding: 40px 20px;
+    }
+}
+
+/* Animation on scroll */
+.car-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation delays */
+.car-card:nth-child(1) { animation-delay: 0.1s; }
+.car-card:nth-child(2) { animation-delay: 0.2s; }
+.car-card:nth-child(3) { animation-delay: 0.3s; }
+.car-card:nth-child(4) { animation-delay: 0.4s; }
+.car-card:nth-child(5) { animation-delay: 0.5s; }
+.car-card:nth-child(6) { animation-delay: 0.6s; }
+.car-card:nth-child(7) { animation-delay: 0.7s; }
+.car-card:nth-child(8) { animation-delay: 0.8s; }
+.car-card:nth-child(9) { animation-delay: 0.9s; }
+.car-card:nth-child(10) { animation-delay: 1.0s; }
+.car-card:nth-child(11) { animation-delay: 1.1s; }
+.car-card:nth-child(12) { animation-delay: 1.2s; }
+.car-card:nth-child(13) { animation-delay: 1.3s; }
+.car-card:nth-child(14) { animation-delay: 1.4s; }
+

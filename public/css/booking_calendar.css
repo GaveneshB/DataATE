@@ -1,0 +1,1053 @@
+/* CSS Variables based on Figma design */
+:root {
+    --bg-color: #D3DCE3;
+    --form-bg: #FFFFFF;
+    --form-border: #847E7E;
+    --input-border: #000000;
+    --text-primary: #000000;
+    --text-secondary: #757575;
+    --text-muted: rgba(0, 0, 0, 0.6);
+    --confirm-btn-bg: #14213D;
+    --calendar-border: #D9D9D9;
+    --shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    /* Booking Status Colors */
+    --whole-day-booked: #14213D;      /* Dark blue - whole day booked */
+    --half-day-booked: #3F5481;       /* Blue - half day booked */
+    --few-hours-booked: #B8CFFF;      /* Light blue - few hours booked */
+    --unavailable: #E75B5B;           /* Red - unavailable */
+    --partial-unavailable: #FFD8D8;   /* Light red - partially unavailable */
+    --selected-range: #14213D;        /* Selected range color */
+    --selected-range-mid: #3F5481;    /* Mid-range selection */
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Container */
+.booking-container {
+    width: 100%;
+    max-width: 428px;
+    min-height: 926px;
+    position: relative;
+    padding-top: 40px;
+}
+
+/* Back Button */
+.back-btn {
+    position: absolute;
+    top: 45px;
+    left: 28px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateX(-3px);
+}
+
+/* Header Logo */
+.header-logo {
+    position: absolute;
+    top: 40px;
+    left: 61px;
+    width: 95px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* Form Card */
+.form-card {
+    background: var(--form-bg);
+    border-radius: 24px;
+    border: 1px solid var(--form-border);
+    margin-top: 42px;
+    padding: 19px 17px 30px;
+    width: 100%;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form Title */
+.form-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Input Field */
+.input-field {
+    background: var(--form-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 20px;
+    height: 30px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.input-field input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: transparent;
+    width: 100%;
+}
+.map-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.map-modal.active {
+    display: flex;
+}
+
+.map-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.map-container {
+    position: relative;
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    z-index: 2001;
+}
+
+.input-field input::placeholder {
+    color: var(--text-secondary);
+}
+
+.field-value {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.field-note {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 4px;
+    margin-left: 12px;
+}
+
+/* Calendar Container */
+.calendar-container {
+    background: var(--form-bg);
+    border: 1px solid var(--calendar-border);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+/* Calendar Header */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.nav-btn {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.month-year-select {
+    display: flex;
+    gap: 8px;
+}
+
+.select-field {
+    position: relative;
+}
+
+.select-field select {
+    appearance: none;
+    background: var(--form-bg);
+    border: 1px solid var(--calendar-border);
+    border-radius: 8px;
+    padding: 6px 28px 6px 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #1E1E1E;
+    cursor: pointer;
+    outline: none;
+}
+
+.select-field::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #1E1E1E;
+    pointer-events: none;
+}
+
+/* Calendar Weekdays */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-bottom: 8px;
+}
+
+.calendar-weekdays span {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.67;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 4px;
+}
+
+/* Calendar Days Grid */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+/* Calendar Day Button */
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #1E1E1E;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 auto;
+}
+
+.calendar-day:hover:not(.disabled):not(.hidden) {
+    background: rgba(20, 33, 61, 0.1);
+}
+
+/* Day States */
+.calendar-day.hidden {
+    visibility: hidden;
+}
+
+.calendar-day.disabled {
+    color: #B3B3B3;
+    cursor: not-allowed;
+}
+
+.calendar-day.today {
+    font-weight: 600;
+    border: 2px solid var(--confirm-btn-bg);
+}
+
+/* Selected States */
+.calendar-day.selected-start,
+.calendar-day.selected-end {
+    background: var(--whole-day-booked);
+    color: #F5F5F5;
+}
+
+.calendar-day.selected-range {
+    background: var(--half-day-booked);
+    color: #F5F5F5;
+}
+
+/* Booking Status States */
+.calendar-day.whole-day-booked {
+    background: var(--whole-day-booked);
+    color: #F5F5F5;
+    cursor: not-allowed;
+}
+
+.calendar-day.half-day-booked {
+    background: var(--half-day-booked);
+    color: #F5F5F5;
+}
+
+.calendar-day.few-hours-booked {
+    background: var(--few-hours-booked);
+    color: #1E1E1E;
+}
+
+.calendar-day.unavailable {
+    background: var(--unavailable);
+    color: #F3F3F3;
+    cursor: not-allowed;
+}
+
+.calendar-day.partial-unavailable {
+    background: var(--partial-unavailable);
+    color: #1E1E1E;
+}
+
+/* Calendar Legend */
+.calendar-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--calendar-border);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.legend-color.whole-day {
+    background: var(--whole-day-booked);
+}
+
+.legend-color.half-day {
+    background: var(--half-day-booked);
+}
+
+.legend-color.few-hours {
+    background: var(--few-hours-booked);
+}
+
+.legend-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+/* Confirm Button */
+.confirm-btn {
+    display: block;
+    width: 152px;
+    height: 39px;
+    margin: 24px auto 0;
+    background: var(--confirm-btn-bg);
+    border: none;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--form-bg);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.confirm-btn:hover {
+    background: #1a2a4f;
+    transform: translateY(-1px);
+}
+
+.confirm-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .booking-container {
+        padding-top: 30px;
+    }
+
+    .form-card {
+        padding: 15px 12px 25px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .calendar-day {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+.input-with-map {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-map input {
+    flex: 1;
+    padding-right: 40px; /* Space for the icon */
+}
+
+.map-trigger {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #41547C;
+}
+
+.map-selection-content {
+    max-width: 600px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.map-actions {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background: white;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .booking-container {
+        max-width: 600px;
+    }
+    
+    .form-card {
+        max-width: 550px;
+        padding: 30px 25px 35px;
+    }
+}
+
+/* Laptop Layout */
+@media (min-width: 1024px) {
+    body {
+        padding: 40px;
+        background: linear-gradient(135deg, #D3DCE3 0%, #B8C6D1 100%);
+    }
+    
+    .booking-container {
+        max-width: 1000px;
+        padding-top: 60px;
+    }
+    
+    .back-btn {
+        top: 60px;
+        left: 40px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-logo {
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        left: auto;
+        width: 140px;
+        height: 38px;
+    }
+    
+    .form-card {
+        max-width: 900px;
+        margin-top: 50px;
+        padding: 50px 60px 40px;
+        border-radius: 32px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    
+    .form-group {
+        margin-bottom: 24px;
+    }
+    
+    .form-group label {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .input-field {
+        height: 50px;
+        border-radius: 25px;
+        padding: 0 20px;
+    }
+    
+    .input-field input {
+        font-size: 18px;
+    }
+    
+    .field-note {
+        font-size: 11px;
+    }
+    
+    /* Calendar Laptop Enhancements */
+    .calendar-container {
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .calendar-header {
+        margin-bottom: 24px;
+    }
+    
+    .nav-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .select-field select {
+        padding: 10px 32px 10px 12px;
+        font-size: 16px;
+    }
+    
+    .calendar-weekdays {
+        margin-bottom: 12px;
+    }
+    
+    .calendar-weekdays span {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .calendar-day {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    
+    .calendar-legend {
+        gap: 24px;
+        margin-top: 24px;
+        padding-top: 20px;
+    }
+    
+    .legend-color {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .legend-text {
+        font-size: 13px;
+    }
+    
+    .confirm-btn {
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+        border-radius: 25px;
+        margin-top: 30px;
+    }
+    
+    .duration-hours {
+        font-size: 16px;
+        margin-top: 12px;
+    }
+    
+    /* Time Picker Laptop */
+    .time-picker-container {
+        width: 400px;
+        border-radius: 32px;
+    }
+    
+    .time-input-box {
+        width: 110px;
+        height: 90px;
+    }
+    
+    .time-input-box span {
+        font-size: 64px;
+    }
+    
+    .clock-face {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .clock-hand {
+        height: 100px;
+    }
+    
+    .clock-number {
+        width: 52px;
+        height: 52px;
+        font-size: 18px;
+    }
+}
+
+/* Add to booking_calendar.css */
+.map-input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.map-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.map-btn:hover {
+    transform: scale(1.2);
+}
+.map-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.map-icon-btn {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.map-icon-btn:hover {
+    transform: scale(1.2);
+}
+
+#mapCanvas {
+    width: 100%;
+    height: 400px; /* Essential: Map won't show without explicit height */
+    background-color: #f0f0f0;
+}
+
+.time-picker-modal.active {
+    display: flex !important;
+}
+
+/* Ensure the map modal uses your existing modal styles */
+#mapPickerModal .time-picker-container {
+    gap: 0;
+    overflow: hidden;
+}
+
+
+/* Large Laptop / Desktop */
+@media (min-width: 1440px) {
+    .booking-container {
+        max-width: 1100px;
+    }
+    
+    .form-card {
+        padding: 60px 80px 50px;
+    }
+    
+    .form-title {
+        font-size: 36px;
+    }
+    
+    .calendar-container {
+        max-width: 700px;
+    }
+    
+    .calendar-day {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+}
+
+/* Duration Hours Display */
+.duration-hours {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--confirm-btn-bg);
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* Time Picker Modal */
+.time-picker-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.time-picker-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.time-picker-container {
+    position: relative;
+    background: var(--bg-color);
+    border-radius: 28px;
+    width: 328px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.time-picker-header {
+    padding: 24px 24px 0;
+}
+
+.time-picker-title {
+    font-family: 'Roboto', 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    letter-spacing: 0.5px;
+    color: #49454F;
+}
+
+.time-picker-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    padding: 0 24px;
+}
+
+/* Time Input Display */
+.time-input-display {
+    display: flex;
+    gap: 12px;
+}
+
+.time-input-group {
+    display: flex;
+    align-items: center;
+}
+
+.time-input-box {
+    width: 96px;
+    height: 80px;
+    background: #DEF1FF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.time-input-box.active {
+    background: #EEF8FF;
+}
+
+.time-input-box span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 57px;
+    line-height: 1.12;
+    color: #41547C;
+}
+
+.time-separator {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 57px;
+    line-height: 1.12;
+    color: #1D1B20;
+    width: 24px;
+    text-align: center;
+}
+
+/* Period Selector (AM/PM) */
+.period-selector {
+    display: flex;
+    flex-direction: column;
+    width: 52px;
+    height: 80px;
+    border: 1px solid #79747E;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.period-btn {
+    flex: 1;
+    background: #DEF0FF;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.15px;
+    color: #49454F;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.period-btn:first-child {
+    border-bottom: 1px solid #79747E;
+}
+
+.period-btn.active {
+    background: #EEF8FF;
+    color: #41547C;
+}
+
+/* Clock Face */
+.clock-face {
+    width: 256px;
+    height: 256px;
+    background: #DEF1FF;
+    border-radius: 50%;
+    position: relative;
+}
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #41547C;
+    border-radius: 50%;
+    z-index: 15; /* Highest layer */
+}
+
+.clock-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 2px;
+    height: 85px;
+    background: #41547C;
+    transform-origin: bottom center;
+    z-index: 2; /* Lower than numbers */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clock-hand::before {
+    content: '';
+    position: absolute;
+    top: -16px; /* Adjusted to center over the number */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px; /* Slightly larger to frame the number */
+    height: 36px;
+    background: #41547C; /* The selection color */
+    border-radius: 50%;
+}
+
+.clock-number {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #1D1B20;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10; /* Higher than the clock hand and tip */
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.clock-number:hover {
+    background: rgba(65, 84, 124, 0.1);
+}
+
+.clock-number.selected {
+    color: #FFFFFF !important;
+    background: transparent; /* Remove the old background-color from previous steps */
+}
+
+/* Time Picker Actions */
+.time-picker-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0 24px 20px;
+}
+
+.time-picker-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    background: transparent;
+    color: #41547C;
+    transition: background 0.2s ease;
+}
+
+.time-picker-btn:hover {
+    background: rgba(65, 84, 124, 0.1);
+}
+
+/* Animations */
+.form-card {
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calendar-day {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scrollbar Styling */
+.form-card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.form-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.form-card::-webkit-scrollbar-thumb {
+    background: var(--calendar-border);
+    border-radius: 2px;
+}
+
