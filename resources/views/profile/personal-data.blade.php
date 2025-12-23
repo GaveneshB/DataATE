@@ -60,20 +60,21 @@
             </div>
         @endif
 
-        <!-- Tabs Navigation -->
-        <div class="tabs-container">
-            <button class="tab-item {{ $activeTab === 'personal' ? 'active' : '' }}" onclick="showTab('personal')">Personal Information</button>
-            <button class="tab-item {{ $activeTab === 'emergency' ? 'active' : '' }}" onclick="showTab('emergency')">Emergency Contact</button>
-            <button class="tab-item {{ $activeTab === 'documents' ? 'active' : '' }}" onclick="showTab('documents')">Documents</button>
+        <!-- Main Form -->
+        <form method="POST" action="{{ route('profile.personal-data.update') }}" enctype="multipart/form-data">
+            @csrf
+            @method('patch')
+            
+            <!-- Tabs Navigation -->
+            <div class="tabs-container">
+            <button type="button" class="tab-item {{ $activeTab === 'personal' ? 'active' : '' }}" onclick="showTab('personal')">Personal Information</button>
+            <button type="button" class="tab-item {{ $activeTab === 'emergency' ? 'active' : '' }}" onclick="showTab('emergency')">Emergency Contact</button>
+            <button type="button" class="tab-item {{ $activeTab === 'documents' ? 'active' : '' }}" onclick="showTab('documents')">Documents</button>
         </div>
 
         <!-- Personal Information Tab -->
         <div id="personal-tab" class="tab-content {{ $activeTab === 'personal' ? 'active' : '' }}">
-            <form method="POST" action="{{ route('profile.personal-data.update') }}" enctype="multipart/form-data">
-                @csrf
-                @method('patch')
-
-                <input type="hidden" name="tab" value="personal">
+            <!-- Form content directly -->
 
                 <div class="form-fields">
                     <!-- Username with Avatar -->
@@ -241,19 +242,12 @@
                     @enderror
                 </div>
 
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </form>
+            <!-- End of Personal Tab Content -->
         </div>
 
         <!-- Emergency Contact Tab -->
         <div id="emergency-tab" class="tab-content {{ $activeTab === 'emergency' ? 'active' : '' }}">
-            <form method="POST" action="{{ route('profile.personal-data.update') }}">
-                @csrf
-                @method('patch')
-                <input type="hidden" name="tab" value="emergency">
+            <!-- Form content directly -->
 
                 <div class="form-fields">
                     <!-- Emergency Contact Name -->
@@ -308,19 +302,12 @@
                     @enderror
                 </div>
 
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </form>
+            <!-- End of Emergency Tab Content -->
         </div>
 
         <!-- Documents Tab -->
         <div id="documents-tab" class="tab-content {{ $activeTab === 'documents' ? 'active' : '' }}">
-            <form method="POST" action="{{ route('profile.personal-data.update') }}" enctype="multipart/form-data">
-                @csrf
-                @method('patch')
-                <input type="hidden" name="tab" value="documents">
+            <!-- Form content directly -->
 
                 <div class="form-fields">
                     <!-- IC/Passport -->
@@ -409,7 +396,7 @@
                     <div class="field-card">
                         <div class="field-info">
                             <span class="field-label">License Expiry Date</span>
-                            <input type="date" name="license_expiry" class="field-input" value="{{ old('license_expiry', $customer->license_expiry ?? '') }}">
+                            <input type="date" name="license_expiry" class="field-input" value="{{ old('license_expiry', $customer->license_expiry ?? '') }}" style="width: fit-content; align-self: flex-start;">
                         </div>
                         <div class="field-edit">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -421,7 +408,6 @@
                     @error('license_expiry')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
-                </div>
 
                 <!-- Student/Staff card -->
                     <div class="field-card">
@@ -432,7 +418,7 @@
                                     <div class="mt-2">
                                         <span class="text-sm text-gray-600">Current file: </span>
                                         <a href="{{ asset($customer->matric_staff_image) }}" target="_blank" 
-                                        class="text-blue-600 hover:underline">View uploaded IC/Passport</a>
+                                        class="text-blue-600 hover:underline">View uploaded Student/Staff Card</a>
                                     </div>
                             @endif
                         </div>
@@ -446,13 +432,14 @@
                     @error('matric_staff_image')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
-                
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">Submit</button>
                 </div>
-            </form>
+                
         </div>
+        
+        <div class="submit-section">
+            <button type="submit" class="submit-btn" style="width: 100%; margin-top: 20px;">Submit All Changes</button>
+        </div>
+        </form>
     </div>
 
     <script>

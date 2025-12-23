@@ -85,46 +85,41 @@ class ProfileController extends Controller
      */
     public function updatePersonalData(Request $request): RedirectResponse
     {
-        
-        $tab = $request->input('tab', 'personal');
+        // Combined rules for all sections
+        $rules = [
+            // Personal Information
+            'name' => ['nullable', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:255'],
+            'nationality' => ['nullable', 'string', 'max:255'],
+            'gender' => ['nullable', 'string', 'max:50'],
+            'matric_staff_no' => ['nullable', 'string', 'max:255'],
+            'faculty' => ['nullable', 'string', 'max:255'],
+            'residential_college' => ['nullable', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:500'],
+            'phone' => ['nullable', 'string', 'max:20'],
 
-        // Validate only fields for the current tab
-        $rules = match ($tab) {
-            'personal' => [
-                'name' => ['nullable', 'string', 'max:255'],
-                'username' => ['nullable', 'string', 'max:255'],
-                'nationality' => ['nullable', 'string', 'max:255'],
-                'gender' => ['nullable', 'string', 'max:50'],
-                'matric_staff_no' => ['nullable', 'string', 'max:255'],
-                'faculty' => ['nullable', 'string', 'max:255'],
-                'residential_college' => ['nullable', 'string', 'max:255'],
-                'address' => ['nullable', 'string', 'max:500'],
-                'phone' => ['nullable', 'string', 'max:20'],
-            ],
-            'emergency' => [
-                'name' => ['sometimes', 'string', 'max:255'],
-                'emergency_contact_name' => ['nullable', 'string', 'max:255'],
-                'relationship' => ['nullable', 'string', 'max:255'],
-                'emergency_phone' => ['nullable', 'string', 'max:20'],
-            ],
-            'documents' => [
-                'name' => ['sometimes', 'string', 'max:255'],
-                'ic_passport' => ['nullable', 'string', 'max:255'],
-                'license_no' => ['nullable', 'string', 'max:255'],
-                'license_expiry' => ['nullable', 'date'],
-                'license_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
+            // Emergency Contact
+            'emergency_contact_name' => ['nullable', 'string', 'max:255'],
+            'relationship' => ['nullable', 'string', 'max:255'],
+            'emergency_phone' => ['nullable', 'string', 'max:20'],
+
+            // Documents
+            'ic_passport' => ['nullable', 'string', 'max:255'],
+            'license_no' => ['nullable', 'string', 'max:255'],
+            'license_expiry' => ['nullable', 'date'],
+            'license_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
             'identity_card_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
-                
-            ],
-            default => [],
-        };
+            'matric_staff_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
+        ];
 
         $validated = $request->validate($rules);
 
         $user = $request->user();
 
-        // Update basic name on users table (fallback to current name if not provided on non-personal tabs)
-        $user->name = $validated['name'] ?? $user->name;
+        // Update basic name on users table if provided
+        if (isset($validated['name'])) {
+            $user->name = $validated['name'];
+        }
         $user->save();
 
         // Remove attributes that belong to the user model only
