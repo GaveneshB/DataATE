@@ -6,7 +6,7 @@ body {
 }
 
 .loyalty-card {
-    background-color: #55585d;
+    background-color: #374e7a;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
@@ -50,15 +50,12 @@ body {
 }
 
 .history-card {
-    background-color: #9ca3af;
-    /* Gray-400 */
+    background-color: #aeb7c8;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 80px;
-    /* Space for fixed bottom buttons */
     min-height: 300px;
     color: #1f2937;
-    /* Gray-800 */
 }
 
 .history-title {
@@ -112,8 +109,7 @@ body {
 }
 
 .btn-redeem {
-    background-color: #dc2626;
-    /* Red-600 */
+    background-color: #3E5789;
     color: white;
     padding: 12px 40px;
     border-radius: 8px;
@@ -125,7 +121,7 @@ body {
 }
 
 .btn-redeem:disabled {
-    background-color: #ef4444;
+    background-color: #3E5789;
     opacity: 0.7;
     cursor: not-allowed;
 }

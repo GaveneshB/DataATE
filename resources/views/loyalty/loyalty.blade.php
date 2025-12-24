@@ -78,10 +78,12 @@
     
         <div class="bottom-buttons">           
             <!-- Redeem Form -->
-            <form action="{{ route('loyalty.redeem') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn-redeem" {{ $rentalCounter < 3 ? 'disabled' : '' }}>REDEEM</button>
-            </form>
+            <!-- Redeem Button -->
+            @if($rentalCounter >= 3)
+                <a href="{{ route('loyalty.redeem') }}" class="btn-redeem" style="text-decoration: none; display: inline-block; line-height: 20px;">REDEEM</a>
+            @else
+                <button class="btn-redeem" disabled>REDEEM</button>
+            @endif
         </div>
     </div>
 </body>

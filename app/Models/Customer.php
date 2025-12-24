@@ -74,6 +74,19 @@ class Customer extends Model
     }
 
     /**
+     * Get the vouchers for the customer.
+     */
+    public function vouchers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Voucher::class);
+    }
+
+    public function activeVouchers()
+    {
+        return $this->vouchers()->active();
+    }
+
+    /**
      * Assign a sequential customer ID if not provided.
      */
     protected static function booted(): void

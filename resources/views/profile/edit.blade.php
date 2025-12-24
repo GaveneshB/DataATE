@@ -110,7 +110,7 @@
             </a>
 
             <!-- Voucher -->
-            <a href="#voucher" class="menu-item">
+            <a href="{{ route('profile.vouchers') }}" class="menu-item">
                 <div class="menu-item-left">
                     <div class="menu-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

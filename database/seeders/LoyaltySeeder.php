@@ -81,13 +81,63 @@ class LoyaltySeeder extends Seeder
             'created_at' => now()->subDays(2),
         ]);
 
-        // Event 5: Earned 1 stamp (Current State)
+        // Event 5: Earned 1 stamp
         Loyalty::create([
             'customer_id' => $customer->id,
             'type' => 'earned',
             'description' => '1 stamp earned (Booking #1004)',
             'rental_counter' => 1,
             'no_of_stamp' => 4,
+            'created_at' => now()->subHours(5),
+        ]);
+
+        // Event 6: Earned 1 stamp
+        Loyalty::create([
+            'customer_id' => $customer->id,
+            'type' => 'earned',
+            'description' => '1 stamp earned (Booking #1005)',
+            'rental_counter' => 2,
+            'no_of_stamp' => 5,
+            'created_at' => now()->subHours(4),
+        ]);
+
+        // Event 7: Earned 1 stamp (Current: 3)
+        Loyalty::create([
+            'customer_id' => $customer->id,
+            'type' => 'earned',
+            'description' => '1 stamp earned (Booking #1006)',
+            'rental_counter' => 3,
+            'no_of_stamp' => 6,
+            'created_at' => now()->subHours(3),
+        ]);
+        
+        // Event 8: Earned 1 stamp (Current: 4)
+        Loyalty::create([
+            'customer_id' => $customer->id,
+            'type' => 'earned',
+            'description' => '1 stamp earned (Booking #1007)',
+            'rental_counter' => 4,
+            'no_of_stamp' => 7,
+            'created_at' => now()->subHours(2),
+        ]);
+
+        // Event 9: Earned 1 stamp (Current: 5)
+        Loyalty::create([
+            'customer_id' => $customer->id,
+            'type' => 'earned',
+            'description' => '1 stamp earned (Booking #1008)',
+            'rental_counter' => 5,
+            'no_of_stamp' => 8,
+            'created_at' => now()->subHours(1),
+        ]);
+
+        // Event 10: Earned 1 stamp (Current: 6)
+        Loyalty::create([
+            'customer_id' => $customer->id,
+            'type' => 'earned',
+            'description' => '1 stamp earned (Booking #1009)',
+            'rental_counter' => 6,
+            'no_of_stamp' => 9,
             'created_at' => now(),
         ]);
     }

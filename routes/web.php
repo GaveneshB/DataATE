@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Auth\CustomerController;
 use App\Http\Controllers\LoyaltyController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,7 +30,12 @@ Route::middleware('auth')->group(function (){
     
     // Loyalty Routes
     Route::get('/loyalty', [LoyaltyController::class, 'index'])->name('loyalty.index');
-    Route::post('/loyalty/redeem', [LoyaltyController::class, 'redeem'])->name('loyalty.redeem');
+    
+    // Voucher Routes
+    Route::get('/loyalty/redeem', [VoucherController::class, 'redeemPage'])->name('loyalty.redeem'); // Selection Page
+    Route::post('/loyalty/redeem', [VoucherController::class, 'store'])->name('voucher.store'); // Process Redemption
+    
+    Route::get('/profile/vouchers', [VoucherController::class, 'index'])->name('profile.vouchers');
 
    
     Route::get('/booking/calendar', [BookingController::class, 'calendar'])->name('booking.calendar');
