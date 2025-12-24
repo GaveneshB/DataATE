@@ -48,8 +48,12 @@
         @endphp
 
         @if ($errors->any())
-            <div class="error-message" style="margin-bottom: 16px;">
-                Please fix the highlighted fields.
+            <div class="error-message" style="margin-bottom: 16px; text-align: left;">
+                <ul style="margin-left: 20px; list-style-type: disc;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
 
@@ -60,27 +64,28 @@
             </div>
         @endif
 
-        <!-- Tabs Navigation -->
-        <div class="tabs-container">
-            <button class="tab-item {{ $activeTab === 'personal' ? 'active' : '' }}" onclick="showTab('personal')">Personal Information</button>
-            <button class="tab-item {{ $activeTab === 'emergency' ? 'active' : '' }}" onclick="showTab('emergency')">Emergency Contact</button>
-            <button class="tab-item {{ $activeTab === 'documents' ? 'active' : '' }}" onclick="showTab('documents')">Documents</button>
+        <!-- Main Form -->
+        <form method="POST" action="{{ route('profile.personal-data.update') }}" enctype="multipart/form-data">
+            @csrf
+            @method('patch')
+            
+            <!-- Tabs Navigation -->
+            <div class="tabs-container">
+            <button type="button" class="tab-item {{ $activeTab === 'personal' ? 'active' : '' }}" onclick="showTab('personal')">Personal Information</button>
+            <button type="button" class="tab-item {{ $activeTab === 'emergency' ? 'active' : '' }}" onclick="showTab('emergency')">Emergency Contact</button>
+            <button type="button" class="tab-item {{ $activeTab === 'documents' ? 'active' : '' }}" onclick="showTab('documents')">Documents</button>
         </div>
 
         <!-- Personal Information Tab -->
         <div id="personal-tab" class="tab-content {{ $activeTab === 'personal' ? 'active' : '' }}">
-            <form method="POST" action="{{ route('profile.personal-data.update') }}" enctype="multipart/form-data">
-                @csrf
-                @method('patch')
-
-                <input type="hidden" name="tab" value="personal">
+            <!-- Form content directly -->
 
                 <div class="form-fields">
                     <!-- Username with Avatar -->
                     <div class="field-card with-avatar">
                         <div class="field-left">
-                            <div class="field-avatar">
-                                <img src="{{ Auth::user()->avatar ?? asset('image/default-avatar.svg') }}" alt="Profile" id="avatarPreview">
+                            <div class="field-avatar" style="overflow: visible !important;">
+                                <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($customer->username ?? $user->name) . '&background=3E5789&color=fff' }}" alt="Profile" id="avatarPreview" style="border-radius: 50%;">
                                 <div class="avatar-edit" onclick="document.getElementById('avatarInput').click()">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
@@ -241,19 +246,12 @@
                     @enderror
                 </div>
 
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </form>
+            <!-- End of Personal Tab Content -->
         </div>
 
         <!-- Emergency Contact Tab -->
         <div id="emergency-tab" class="tab-content {{ $activeTab === 'emergency' ? 'active' : '' }}">
-            <form method="POST" action="{{ route('profile.personal-data.update') }}">
-                @csrf
-                @method('patch')
-                <input type="hidden" name="tab" value="emergency">
+            <!-- Form content directly -->
 
                 <div class="form-fields">
                     <!-- Emergency Contact Name -->
@@ -308,19 +306,12 @@
                     @enderror
                 </div>
 
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </form>
+            <!-- End of Emergency Tab Content -->
         </div>
 
         <!-- Documents Tab -->
         <div id="documents-tab" class="tab-content {{ $activeTab === 'documents' ? 'active' : '' }}">
-            <form method="POST" action="{{ route('profile.personal-data.update') }}" enctype="multipart/form-data">
-                @csrf
-                @method('patch')
-                <input type="hidden" name="tab" value="documents">
+            <!-- Form content directly -->
 
                 <div class="form-fields">
                     <!-- IC/Passport -->
@@ -409,7 +400,7 @@
                     <div class="field-card">
                         <div class="field-info">
                             <span class="field-label">License Expiry Date</span>
-                            <input type="date" name="license_expiry" class="field-input" value="{{ old('license_expiry', $customer->license_expiry ?? '') }}">
+                            <input type="date" name="license_expiry" class="field-input" value="{{ old('license_expiry', $customer->license_expiry ?? '') }}" style="width: fit-content; align-self: flex-start;">
                         </div>
                         <div class="field-edit">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -431,7 +422,7 @@
                                     <div class="mt-2">
                                         <span class="text-sm text-gray-600">Current file: </span>
                                         <a href="{{ asset($customer->matric_staff_image) }}" target="_blank" 
-                                        class="text-blue-600 hover:underline">View uploaded IC/Passport</a>
+                                        class="text-blue-600 hover:underline">View uploaded Student/Staff Card</a>
                                     </div>
                             @endif
                         </div>
@@ -445,13 +436,14 @@
                     @error('matric_staff_image')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
-                
-                <!-- Submit Section -->
-                <div class="submit-section">
-                    <button type="submit" class="submit-btn">Submit</button>
                 </div>
-            </form>
+                
         </div>
+        
+        <div class="submit-section">
+            <button type="submit" class="submit-btn" style="width: 100%; margin-top: 20px;">Submit All Changes</button>
+        </div>
+        </form>
     </div>
 
     <script>

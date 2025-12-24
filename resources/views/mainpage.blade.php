@@ -24,7 +24,7 @@
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#car-rental">Car Rental</a></li>
                 @auth
-                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('dashboard') }}">Notification</a></li> <!--Remember to make one notification page-->
                     <li><a href="{{ route('profile.edit') }}">Profile</a></li>
                 @endauth
             </ul>

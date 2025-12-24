@@ -1,6 +1,7 @@
 /* CSS Variables */
 :root {
     --primary-dark: #0B1C3F;
+    --hero-blue: #4a5f7a;
     --button-dark: #14213D;
     --teal: #113C3C;
     --white: #FFFFFF;
@@ -90,7 +91,8 @@ body {
 }
 
 .nav-links a.active {
-    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+    color: var(--white);
 }
 
 /* Auth Buttons */
@@ -158,43 +160,55 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 60px;
+    padding: 10px 60px 20px;
     max-width: 1400px;
     margin: 0 auto;
+    height: calc(500px - 80px);
 }
 
+
 .hero-text {
+    flex: 0 0 45%;
     max-width: 500px;
+    padding-top: 0;
+    margin-top: -100px;
+    /* Move text up */
 }
 
 .hero-text h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 48px;
-    line-height: 1.2;
+    font-size: 42px;
+    line-height: 1.1;
     color: var(--white);
     margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .hero-text .tagline {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 1.4;
-    color: var(--white);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 30px;
+    text-transform: uppercase;
 }
 
 .explore-btn {
     background: var(--white);
     border: none;
-    padding: 14px 32px;
+    padding: 12px 30px;
     font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 14px;
-    color: #575D6F;
+    font-weight: 700;
+    font-size: 16px;
+    color: #4a5f7a;
     cursor: pointer;
+    border-radius: 3px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .explore-btn:hover {
@@ -204,55 +218,69 @@ body {
 
 /* Hero Car Section */
 .hero-car-section {
+    flex: 1;
     position: relative;
     display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: center;
+    height: 100%;
 }
 
 .hero-car-img {
-    width: 450px;
+    width: 650px;
     height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
-    animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    max-width: 100%;
+    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    position: relative;
+    margin-top: -50px;
+    left: -130px;
+    /* Shift visually left without affecting layout */
 }
 
 .car-specs {
+    position: relative;
+    margin-left: -20px;
+    /* Slight overlap or adjustment */
+    z-index: 2;
     color: var(--white);
+    text-align: left;
+    min-width: 150px;
+    margin-top: -80px;
 }
 
 .color-label {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 24px;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
 }
 
 .specs-grid {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
 }
 
 .spec-item {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .spec-label {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 12px;
-    min-width: 80px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .spec-value {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
+    color: var(--white);
 }
 
 /* Hero Navigation */
@@ -268,10 +296,10 @@ body {
 }
 
 .nav-arrow {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -283,33 +311,47 @@ body {
 .nav-arrow svg {
     width: 20px;
     height: 20px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
 }
 
 .nav-arrow:hover {
     border-color: var(--white);
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
 .nav-arrow:hover svg {
     color: var(--white);
 }
 
+.nav-arrow:active {
+    transform: scale(0.95);
+}
+
 .nav-dots {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    border: 2px solid var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     background: transparent;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2);
 }
 
 .dot.active {
     background: var(--white);
+    border-color: var(--white);
 }
 
 /* Car Models Section */
@@ -387,6 +429,8 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+    /* Center the name as requested */
 }
 
 .car-actions {
@@ -415,6 +459,7 @@ body {
 
 .btn-rent:hover {
     background: #0d2f2f;
+    transform: translateY(-2px);
 }
 
 .btn-details {
@@ -425,6 +470,7 @@ body {
 
 .btn-details:hover {
     background: #e8e8e8;
+    transform: translateY(-2px);
 }
 
 .btn-unavailable {
@@ -440,13 +486,15 @@ body {
 }
 
 /* Responsive Design for Laptop */
+/* Responsive Design */
 @media (max-width: 1200px) {
     .cars-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .hero-car-img {
-        width: 350px;
+        width: 550px;
+        /* Scale down slightly */
     }
 }
 
@@ -454,68 +502,216 @@ body {
     .cars-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .hero-text h1 {
-        font-size: 36px;
-    }
-    
-    .hero-car-section {
-        margin-top: 30px;
-    }
-    
-    .hero-car-img {
-        width: 300px;
-    }
-    
-    .navbar {
         padding: 20px 30px;
+        /* Maintain row direction */
+        flex-direction: row;
+        align-items: center;
     }
-    
+
+    .hero-text {
+        flex: 0 0 45%;
+        margin-top: -60px;
+        /* Adjust for smaller height */
+    }
+
+    .hero-text h1 {
+        font-size: 32px;
+        /* Smaller font */
+    }
+
+    .hero-text .tagline {
+        font-size: 12px;
+    }
+
+    .hero-car-section {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .hero-car-img {
+        width: 450px;
+        left: -80px;
+        /* Adjust relative position */
+    }
+
+    .car-specs {
+        min-width: 120px;
+        margin-top: -40px;
+    }
+
+    .navbar {
+        padding: 15px 30px;
+    }
+
     .nav-links {
-        gap: 25px;
+        gap: 20px;
     }
 }
 
 @media (max-width: 768px) {
     .hero {
-        height: auto;
-        min-height: 100vh;
+        height: 220px;
+        /* Reduced further to reduce blank space */
+        min-height: auto;
     }
-    
+
+    /* Force Navbar to be horizontal */
     .navbar {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 10px;
+        /* Minimal padding to reduce gap */
+        gap: 5px;
     }
-    
+
+    .logo img {
+        height: 24px;
+    }
+
     .nav-links {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 12px;
+        flex-wrap: nowrap;
+        display: flex;
     }
-    
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
     .auth-buttons {
-        margin-top: 10px;
+        margin-top: 0;
+        gap: 8px;
+        display: flex;
     }
-    
+
+    .btn-login,
+    .btn-signup,
+    .btn-logout {
+        padding: 6px 12px;
+        font-size: 11px;
+        border-width: 1px;
+    }
+
     .hero-content {
-        padding: 30px 20px;
+        padding: 0 15px;
+        /* No top padding to reduce gap */
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        margin-top: -30px;
+        /* Pull up SIGNIFICANTLY closer to navbar */
     }
-    
+
+    .hero-text {
+        flex: 0 0 38%;
+        /* Increased width to prevent 3 lines */
+        margin-top: -10px;
+        text-align: left;
+    }
+
     .hero-text h1 {
-        font-size: 28px;
+        font-size: 13px;
+        /* Slightly smaller to ensure 2 lines */
+        margin-bottom: 5px;
+        line-height: 1.2;
+        white-space: nowrap;
     }
-    
+
+    .hero-text .tagline {
+        font-size: 8px;
+        margin-bottom: 5px;
+    }
+
+    .explore-btn {
+        padding: 5px 10px;
+        font-size: 8px;
+    }
+
+    .hero-car-section {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .hero-car-img {
+        width: 180px;
+        left: -60px;
+        margin-top: 0;
+        position: relative;
+    }
+
+    .car-specs {
+        position: absolute;
+        right: -5px;
+        top: 48%;
+        transform: translateY(-50%) scale(0.5);
+        margin: 0;
+        text-align: left;
+        min-width: 100px;
+    }
+
+    .color-label {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
     .cars-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for miniature look */
+        gap: 10px;
+        /* Reduced gap */
     }
-    
+
     .car-models {
-        padding: 40px 20px;
+        padding: 30px 10px;
+    }
+
+    .car-models h2 {
+        font-size: 16px;
+    }
+
+    /* Miniature Car Card Styles for Mobile */
+    .car-image {
+        height: 100px;
+        /* Smaller image area */
+        padding: 10px;
+        /* Reduced padding */
+    }
+
+    .car-info {
+        padding: 10px;
+        /* Reduced padding */
+    }
+
+    .car-name {
+        font-size: 12px;
+        /* Small font */
+        margin-bottom: 8px;
+    }
+
+    .car-actions {
+        gap: 5px;
+    }
+
+    .btn {
+        padding: 6px 8px;
+        /* Tiny buttons */
+        font-size: 10px;
+        border-radius: 6px;
+    }
+
+    .hero-nav {
+        bottom: 10px;
+        /* Moved up as requested */
+        transform: scale(0.6) translateX(-50%);
+        left: 40%;
     }
 }
 
@@ -534,18 +730,58 @@ body {
 }
 
 /* Stagger animation delays */
-.car-card:nth-child(1) { animation-delay: 0.1s; }
-.car-card:nth-child(2) { animation-delay: 0.2s; }
-.car-card:nth-child(3) { animation-delay: 0.3s; }
-.car-card:nth-child(4) { animation-delay: 0.4s; }
-.car-card:nth-child(5) { animation-delay: 0.5s; }
-.car-card:nth-child(6) { animation-delay: 0.6s; }
-.car-card:nth-child(7) { animation-delay: 0.7s; }
-.car-card:nth-child(8) { animation-delay: 0.8s; }
-.car-card:nth-child(9) { animation-delay: 0.9s; }
-.car-card:nth-child(10) { animation-delay: 1.0s; }
-.car-card:nth-child(11) { animation-delay: 1.1s; }
-.car-card:nth-child(12) { animation-delay: 1.2s; }
-.car-card:nth-child(13) { animation-delay: 1.3s; }
-.car-card:nth-child(14) { animation-delay: 1.4s; }
+.car-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
 
+.car-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.car-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.car-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.car-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.car-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.car-card:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.car-card:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.car-card:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+.car-card:nth-child(10) {
+    animation-delay: 1.0s;
+}
+
+.car-card:nth-child(11) {
+    animation-delay: 1.1s;
+}
+
+.car-card:nth-child(12) {
+    animation-delay: 1.2s;
+}
+
+.car-card:nth-child(13) {
+    animation-delay: 1.3s;
+}
+
+.car-card:nth-child(14) {
+    animation-delay: 1.4s;
+}

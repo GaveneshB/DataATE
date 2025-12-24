@@ -85,50 +85,76 @@ class ProfileController extends Controller
      */
     public function updatePersonalData(Request $request): RedirectResponse
     {
-        
-        $tab = $request->input('tab', 'personal');
+        // Combined rules for all sections
+        $rules = [
+            // Personal Information
+            'name' => ['nullable', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:255'],
+            'nationality' => ['nullable', 'string', 'max:255'],
+            'gender' => ['nullable', 'string', 'max:50'],
+            'matric_staff_no' => ['nullable', 'string', 'max:255'],
+            'faculty' => ['nullable', 'string', 'max:255'],
+            'residential_college' => ['nullable', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:500'],
+            'phone' => ['nullable', 'string', 'max:20'],
 
-        // Validate only fields for the current tab
-        $rules = match ($tab) {
-            'personal' => [
-                'name' => ['nullable', 'string', 'max:255'],
-                'username' => ['nullable', 'string', 'max:255'],
-                'nationality' => ['nullable', 'string', 'max:255'],
-                'gender' => ['nullable', 'string', 'max:50'],
-                'matric_staff_no' => ['nullable', 'string', 'max:255'],
-                'faculty' => ['nullable', 'string', 'max:255'],
-                'residential_college' => ['nullable', 'string', 'max:255'],
-                'address' => ['nullable', 'string', 'max:500'],
-                'phone' => ['nullable', 'string', 'max:20'],
-            ],
-            'emergency' => [
-                'name' => ['sometimes', 'string', 'max:255'],
-                'emergency_contact_name' => ['nullable', 'string', 'max:255'],
-                'relationship' => ['nullable', 'string', 'max:255'],
-                'emergency_phone' => ['nullable', 'string', 'max:20'],
-            ],
-            'documents' => [
-                'name' => ['sometimes', 'string', 'max:255'],
-                'ic_passport' => ['nullable', 'string', 'max:255'],
-                'license_no' => ['nullable', 'string', 'max:255'],
-                'license_expiry' => ['nullable', 'date'],
-                'license_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
+            // Emergency Contact
+            'emergency_contact_name' => ['nullable', 'string', 'max:255'],
+            'relationship' => ['nullable', 'string', 'max:255'],
+            'emergency_phone' => ['nullable', 'string', 'max:20'],
+
+            // Documents
+            'ic_passport' => ['nullable', 'string', 'max:255'],
+            'license_no' => ['nullable', 'string', 'max:255'],
+            'license_expiry' => ['nullable', 'date'],
+            'license_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
             'identity_card_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
-                
-            ],
-            default => [],
-        };
+            'matric_staff_image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,pdf', 'max:5120'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:10240'],
+        ];
 
         $validated = $request->validate($rules);
 
         $user = $request->user();
 
-        // Update basic name on users table (fallback to current name if not provided on non-personal tabs)
-        $user->name = $validated['name'] ?? $user->name;
+        // Update basic name on users table if provided
+        if (isset($validated['name'])) {
+            $user->name = $validated['name'];
+        }
+
+        // Handle Avatar Upload
+        if ($request->hasFile('avatar')) {
+            // Delete old avatar if exists
+            if ($user->avatar && file_exists(public_path($user->avatar))) {
+                try {
+                    unlink(public_path($user->avatar));
+                } catch (\Exception $e) {
+                    // Log error but continue with upload
+                    \Illuminate\Support\Facades\Log::error('Failed to delete old avatar: ' . $e->getMessage());
+                }
+            }
+
+            $file = $request->file('avatar');
+            $filename = 'avatar_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            
+            // Create directory if it doesn't exist
+            $directory = public_path('images/avatars');
+            if (!file_exists($directory)) {
+                mkdir($directory, 0755, true);
+            }
+            
+            // Move file to public/images/avatars
+            $file->move($directory, $filename);
+            
+            // Store relative path in database
+            $user->avatar = 'images/avatars/' . $filename;
+        }
+
         $user->save();
 
         // Remove attributes that belong to the user model only
         unset($validated['name']);
+        unset($validated['avatar']);
 
         // Create or update customer profile
         $customer = $user->customer ?: new Customer([
@@ -208,7 +234,7 @@ class ProfileController extends Controller
         $customer->fill($validated);
         $customer->save();
 
-        return Redirect::route('profile.personal-data')->with('status', 'personal-data-updated');
+        return back()->with('status', 'personal-data-updated');
     }
 
     /**
